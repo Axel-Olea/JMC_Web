@@ -870,23 +870,83 @@ const MechanicDashboard = () => {
                             })
                             .map(app => (
                               <div key={app.id} className={styles.scheduledAppointment}>
-                                <strong>{app.service}</strong>
-                                <p>{app.vehicle} - {app.client}</p>
-                                <p>${(app.estimatedPrice || 0).toLocaleString('es-CL')}</p>
-                                <div className={styles.appointmentActions}>
-                                  <button onClick={() => {
-                                    setEditingAppointment(app);
-                                    setNewDateTime({
-                                      date: app.date,
-                                      time: app.time
-                                    });
-                                  }}>
-                                    Editar
-                                  </button>
-                                  <button onClick={() => handleCancelAppointment(app.id)}>
-                                    Cancelar
-                                  </button>
-                                </div>
+                                {editingAppointment?.id === app.id ? (
+                                  <div className={styles.editForm}>
+                                    <div className={styles.formRow}>
+                                      <div className={styles.formGroup}>
+                                        <label>Fecha:</label>
+                                        <input
+                                          type="date"
+                                          value={newDateTime.date}
+                                          onChange={(e) => setNewDateTime({...newDateTime, date: e.target.value})}
+                                          className={styles.formInput}
+                                        />
+                                      </div>
+                                      <div className={styles.formGroup}>
+                                        <label>Hora:</label>
+                                        <input
+                                          type="time"
+                                          value={newDateTime.time}
+                                          onChange={(e) => setNewDateTime({...newDateTime, time: e.target.value})}
+                                          className={styles.formInput}
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className={styles.formActions}>
+                                      <button 
+                                        className={styles.saveButton}
+                                        onClick={async () => {
+                                          if (!validateDateTime()) return;
+                                          
+                                          try {
+                                            await updateDoc(doc(firestore, 'appointments', editingAppointment.id), {
+                                              date: newDateTime.date,
+                                              time: newDateTime.time
+                                            });
+                                            setEditingAppointment(null);
+                                          } catch (error) {
+                                            console.error("Error updating appointment:", error);
+                                            setError("Error al actualizar la cita");
+                                          }
+                                        }}
+                                      >
+                                        Guardar
+                                      </button>
+                                      <button 
+                                        className={styles.cancelButton}
+                                        onClick={() => setEditingAppointment(null)}
+                                      >
+                                        Cancelar
+                                      </button>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <>
+                                    <strong>{app.service}</strong>
+                                    <p>{app.vehicle} - {app.client}</p>
+                                    <p>${(app.estimatedPrice || 0).toLocaleString('es-CL')}</p>
+                                    <div className={styles.appointmentActions}>
+                                      <button 
+                                        className={styles.editButton}
+                                        onClick={() => {
+                                          setEditingAppointment(app);
+                                          setNewDateTime({
+                                            date: app.date,
+                                            time: app.time
+                                          });
+                                        }}
+                                      >
+                                        Editar
+                                      </button>
+                                      <button 
+                                        className={styles.cancelButton}
+                                        onClick={() => handleCancelAppointment(app.id)}
+                                      >
+                                        Cancelar
+                                      </button>
+                                    </div>
+                                  </>
+                                )}
                               </div>
                             ))
                           }
@@ -895,7 +955,7 @@ const MechanicDashboard = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className={styles.appointmentList}>
                   <h3>Citas programadas - {currentDate.toLocaleDateString('es-ES')}</h3>
                   {dailyAppointments.length > 0 ? (
@@ -1068,14 +1128,6 @@ const MechanicDashboard = () => {
                           <FaMoneyBillWave /> ${(appointment.estimatedPrice || 0).toLocaleString('es-CL')}
                         </p>
                         <div className={styles.cardActions}>
-                          <button
-                            onClick={() => {
-                              const fullAppointment = appointments.find(a => a.id === appointment.id);
-                              setSelectedAppointment(fullAppointment);
-                            }}
-                          >
-                            Detalles
-                          </button>
                         </div>
                       </div>
                     ))}
@@ -1214,53 +1266,6 @@ const MechanicDashboard = () => {
           </div>
         )}
       </div>
-      {editingAppointment && (
-        <div className={styles.editModal}>
-          <div className={styles.modalContent}>
-            <h3>Editar fecha y hora</h3>
-            <div className={styles.formGroup}>
-              <label>Fecha:</label>
-              <input
-                type="date"
-                value={newDateTime.date}
-                onChange={(e) => setNewDateTime({...newDateTime, date: e.target.value})}
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label>Hora:</label>
-              <input
-                type="time"
-                value={newDateTime.time}
-                onChange={(e) => setNewDateTime({...newDateTime, time: e.target.value})}
-              />
-            </div>
-            <div className={styles.modalActions}>
-              <button 
-                  onClick={async () => {
-                    if (!validateDateTime()) return;
-                    
-                    try {
-                      await updateDoc(doc(firestore, 'appointments', editingAppointment.id), {
-                        date: newDateTime.date,
-                        time: newDateTime.time
-                      });
-                      setEditingAppointment(null);
-                      alert('Cita actualizada correctamente');
-                    } catch (error) {
-                      console.error("Error updating appointment:", error);
-                      setError("Error al actualizar la cita");
-                    }
-                  }}
-                >
-                  Guardar
-                </button>
-              <button onClick={() => setEditingAppointment(null)}>
-                Cancelar -- Aquí
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

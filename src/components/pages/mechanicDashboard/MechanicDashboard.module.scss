@@ -1127,4 +1127,122 @@ h2 {
   }
 }
 
+/* Estilos para el formulario de edición */
+.editForm {
+  background: #fff;
+  padding: 0.75rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #A30404;
+}
 
+.formRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.formGroup {
+  flex: 1;
+  
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: #A30404;
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.saveButton {
+  background: #A30404;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: darken(#A30404, 10%);
+  }
+}
+
+.cancelButton {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #e9ecef;
+  }
+}
+
+/* Ajustes para los botones de acciones */
+.appointmentActions {
+  .editButton {
+    background: #f8f9fa;
+    color: #A30404;
+    border: 1px solid #A30404;
+    
+    &:hover {
+      background: rgba(#A30404, 0.1);
+    }
+  }
+  
+  .cancelButton {
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #ddd;
+    
+    &:hover {
+      background: #e9ecef;
+    }
+  }
+}
+
+/* Ajustes para el formulario en móviles */
+@media (max-width: 480px) {
+  .editForm {
+    padding: 0.5rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
