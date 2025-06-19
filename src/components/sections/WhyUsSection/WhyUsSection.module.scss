@@ -1,0 +1,290 @@
+.whyUs {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-size: 200% auto;
+      animation: gradientFlow 3s linear infinite;
+    }
+  }
+  
+  @keyframes gradientFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+  
+  .sectionHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    
+    .sectionSubtitle {
+      display: inline-block;
+      color: #D62C2C;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+    
+    h2 {
+      font-size: 2.8rem;
+      color: #222;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      
+      span {
+        color: #A30404;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 5px;
+          left: 0;
+          width: 100%;
+          height: 8px;
+          background: rgba(163, 4, 4, 0.2);
+          z-index: -1;
+          border-radius: 4px;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 2.2rem;
+      }
+    }
+    
+    .headerDivider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #A30404, #D62C2C);
+      margin: 0 auto 1.5rem;
+      border-radius: 2px;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+  
+  .featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .featureCard {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(163, 4, 4, 0.15);
+      
+      .iconContainer {
+        transform: scale(1.1) translateY(-5px);
+        
+        .icon {
+          color: white;
+        }
+      }
+      
+      .iconBackground {
+        transform: scale(1);
+        opacity: 1;
+      }
+      
+      .cardHoverEffect {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+      }
+    }
+    
+    h3 {
+      color: #222;
+      margin: 1.8rem 0 1.2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+    
+    p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 2;
+    }
+  }
+  
+  .iconContainer {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(163, 4, 4, 0.1);
+    border: 1px solid rgba(163, 4, 4, 0.1);
+    
+    .icon {
+      color: #A30404;
+      font-size: 2.2rem;
+      transition: all 0.3s ease;
+    }
+  }
+  
+  .iconBackground {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #A30404, #D62C2C);
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+  }
+  
+  .cardHoverEffect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    background: linear-gradient(135deg, rgba(163, 4, 4, 0.03), rgba(214, 44, 44, 0.03));
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 0;
+  }
+  
+  .statsBanner {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #A30404, #D62C2C);
+    color: white;
+    padding: 4rem 2rem;
+    margin-top: 5rem;
+    border-radius: 12px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(163, 4, 4, 0.2);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      animation: rotateGradient 15s linear infinite;
+    }
+  }
+  
+  @keyframes rotateGradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .statItem {
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 3rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  .statNumber {
+    font-size: 3.5rem;
+    font-weight: 800;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(to bottom, white, #f1f1f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+  
+  .statLabel {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Animación para los números */
+  @keyframes countUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  .statNumber {
+    animation: countUp 1s ease forwards;
+  }
+
+  .featureCard {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

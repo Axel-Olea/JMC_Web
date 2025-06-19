@@ -1,0 +1,678 @@
+/* Estructura principal */
+.appointmentContainer {
+  max-width: 1200px;
+  margin: 150px auto 50px;
+  padding: 2rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+    margin-top: 120px;
+  }
+}
+
+/* Estados */
+.loadingContainer, .loadingTimeSlots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  
+  p {
+    margin-top: 1rem;
+    color: #555;
+  }
+}
+
+.loadingSpinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #A30404;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: #ffebee;
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+  margin: 2rem;
+  border-radius: 4px;
+}
+
+.errorText {
+  color: #d32f2f;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.retryButton {
+  background: #A30404;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #8a0303;
+  }
+}
+
+/* Tarjetas */
+.appointmentCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  position: relative;
+  margin-bottom: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #A30404, #8a0303);
+    border-radius: 12px 0 0 12px;
+  }
+}
+
+/* Títulos */
+.title {
+  color: #A30404;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
+}
+
+.userBadge {
+  font-size: 0.7rem;
+  background: rgba(163, 4, 4, 0.1);
+  color: #A30404;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  margin-left: auto;
+}
+
+.sectionTitle {
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  
+  svg {
+    color: #A30404;
+  }
+}
+
+/* Formulario */
+.appointmentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inputLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+
+  span {
+    flex: 1;
+  }
+}
+
+.inputIcon {
+  color: #A30404;
+  font-size: 0.9rem;
+}
+
+.inputField, .selectField, .textareaField {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background-color: #f8f9fa;
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  
+  &:focus {
+    outline: none;
+    border-color: #A30404;
+    box-shadow: 0 0 0 2px rgba(163, 4, 4, 0.1);
+    background-color: white;
+  }
+}
+
+.textareaField {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.selectField {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A30404' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+.hintText {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+  
+  a {
+    color: #A30404;
+    text-decoration: none;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Botones */
+.submitButton {
+  background: linear-gradient(135deg, #A30404, #8a0303);
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  
+  &:hover {
+    background: linear-gradient(135deg, #8a0303, #A30404);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(163, 4, 4, 0.2);
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Mensajes */
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  
+  &.error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border-left: 4px solid #d32f2f;
+  }
+  
+  &.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+  }
+}
+
+/* Login Prompt */
+.loginPrompt {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  
+  .loginLink {
+    color: #A30404;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 0.3rem;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Calendario */
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.weeksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.weekRow {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  }
+}
+
+.calendarDay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+  
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  
+  &.selected {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+  }
+  
+  &.today {
+    background-color: #fff8e1;
+    border-color: #ffc107;
+  }
+  
+  &.fullyBooked {
+    background-color: #ffebee;
+    color: #c62828;
+    cursor: not-allowed;
+  }
+}
+
+.dayHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dayName {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.dayNumber {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.2rem 0;
+  color: #333;
+}
+
+.monthName {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.bookedIndicator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #A30404;
+}
+
+.fullyBookedLabel {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  font-size: 0.7rem;
+  color: #c62828;
+  font-weight: 500;
+}
+
+.timeSlotsContainer {
+  margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+.timeSlotsTitle {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.timeSlotsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.8rem;
+}
+
+.timeSlot {
+  padding: 0.8rem 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  position: relative;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+
+  &.available {
+    background-color: #e8f5e9; /* Verde claro para disponibles */
+    color: #2e7d32;
+    &:hover {
+      background-color: #c8e6c9;
+    }
+  }
+  
+  &.selectedAvailable {
+    background-color: #4caf50; /* Verde más oscuro para seleccionado */
+    color: white;
+  }
+  
+  &.booked {
+    background-color: #ffebee; /* Rojo claro para no disponibles */
+    color: #c62828;
+    cursor: not-allowed;
+    position: relative;
+    
+    &:hover::after {
+      content: 'No disponible';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #c62828;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.bookedTooltip {
+  display: block;
+  font-size: 0.7rem;
+  color: #c62828;
+  margin-top: 0.2rem;
+  font-weight: normal;
+}
+
+/* Vista de Confirmación */
+.confirmationView {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.confirmationHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.confirmationIcon {
+  color: #4CAF50;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.confirmationTitle {
+  color: #A30404;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+
+  @media (max-width: 480px) {
+    font-size: 1.7rem;
+  }
+}
+
+.confirmationSubtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.confirmationCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-top: 1.5rem;
+  border-top: 4px solid #A30404;
+}
+
+.summaryTitle {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.summarySection {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.summarySectionTitle {
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.summaryItem {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.summaryIcon {
+  color: #A30404;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.summaryLabel {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+}
+
+.summaryValue {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.confirmationActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+
+.backButton {
+  background: none;
+  border: 1px solid #A30404;
+  color: #A30404;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(163, 4, 4, 0.1);
+  }
+}
+
+.homeButton {
+  background: #A30404;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #8a0303;
+    color: white;
+  }
+}
+
+.noVehicles {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.addVehicleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #A30404;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+
+  &:hover {
+    background: #8a0303;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

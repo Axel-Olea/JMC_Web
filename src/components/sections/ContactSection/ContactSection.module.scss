@@ -1,0 +1,271 @@
+.contactSection {
+  padding: 5rem 2rem;
+  background: white;
+  overflow: hidden;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(163, 4, 4, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 0;
+  }
+  
+  .sectionHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    
+    h2 {
+      color: #A30404;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: #A30404;
+        border-radius: 3px;
+      }
+    }
+    
+    p {
+      color: #666;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.contactContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 500px;
+  position: relative;
+  z-index: 1;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mapContainer {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+  }
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+  
+  iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.addressOverlay {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  max-width: 250px;
+  backdrop-filter: blur(5px);
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  h3 {
+    color: #A30404;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    
+    .icon {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+  }
+  
+  address {
+    font-style: normal;
+    color: #333;
+    font-size: 0.95rem;
+    
+    p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      
+      .icon {
+        margin-right: 8px;
+        color: #A30404;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.formContainer {
+  background: white;
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  h3 {
+    color: #A30404;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: #A30404;
+    }
+  }
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+    position: relative;
+    
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: #333;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #f9f9f9;
+      
+      &:focus {
+        outline: none;
+        border-color: #A30404;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(163, 4, 4, 0.1);
+      }
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #A30404 0%, #910202 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  
+  .buttonIcon {
+    font-size: 1rem;
+  }
+}
+
+/* Efectos de glassmorphism para móvil */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 3rem 1rem;
+    
+    &::before {
+      background: linear-gradient(135deg, rgba(163, 4, 4, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+  }
+  
+  .mapContainer {
+    min-height: 350px;
+    
+    .mapWrapper {
+      min-height: 350px;
+    }
+  }
+  
+  .addressOverlay {
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+  }
+  
+  .formContainer {
+    padding: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}

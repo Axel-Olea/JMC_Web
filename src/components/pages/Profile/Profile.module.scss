@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.profileContainer {
+  max-width: 1200px;
+  margin: 140px auto 50px;
+  margin: 150px auto 50px; 
+  padding: 0 2rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+
+  @media (max-width: 768px) {
+    margin-top: 120px;
+    padding: 0 1rem;
+  }
+}
+
+.profileHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.profileTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #A30404;
+  text-align: center;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.welcomeMessage {
+  font-size: 1.1rem;
+  color: #666;
+
+  span {
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.userInfoContainer {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.userInfoCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.userInfoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  text-align: left;
+
+  h4 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+    color: #D62C2C;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+  }
+}
+
+.userInfoIcon {
+  font-size: 1.5rem;
+  color: #D62C2C;
+  margin-top: 0.2rem;
+}
+
+
+.vehiclesSection {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.sectionIcon {
+  margin-right: 0.8rem;
+  color: #A30404;
+}
+
+.registerButton {
+  background-color: #A30404;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #910202;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.vehiclesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vehicleCard {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-color: rgba(163, 4, 4, 0.3);
+  }
+}
+
+.vehicleInfo {
+  margin-bottom: 1.5rem;
+}
+
+.vehicleBrand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #A30404;
+  margin-bottom: 0.3rem;
+}
+
+.vehicleModel {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.vehiclePlate {
+  font-size: 0.9rem;
+  color: #666;
+
+  span {
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.vehicleActions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: auto;
+}
+
+.editButton, .deleteButton {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.editButton {
+  background-color: #f0f0f0;
+  color: #333;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+.deleteButton {
+  background-color: #f8f8f8;
+  color: #d32f2f;
+
+  &:hover {
+    background-color: #ffecec;
+  }
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.adminButton {
+  background: linear-gradient(135deg, #A30404 0%, #910202 100%);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #6d0d0d;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}

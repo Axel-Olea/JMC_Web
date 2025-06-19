@@ -1,0 +1,58 @@
+.scheduleSection {
+  padding: 4rem 2rem;
+  background: #fff;
+  text-align: center;
+
+  position: relative;
+  overflow: hidden;
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    color: #A30404;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .scheduleButton {
+    background: linear-gradient(135deg, #A30404 0%, #910202 100%);
+    color: white;
+    border: none;
+    padding: 14px 36px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .scheduleSection {
+    padding: 3rem 1rem;
+
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .scheduleButton {
+      padding: 12px 28px;
+      font-size: 1rem;
+    }
+  }
+}

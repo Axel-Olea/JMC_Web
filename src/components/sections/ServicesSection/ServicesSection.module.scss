@@ -1,0 +1,247 @@
+.section {
+  padding: 6rem 3rem;
+  background: #f8f9fa;
+  position: relative;
+
+
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  
+  .sectionSubtitle {
+    display: inline-block;
+    color: #D62C2C;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+  
+  .sectionTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: #222;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    
+    span {
+      color: #A30404;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: rgba(163, 4, 4, 0.2);
+        z-index: -1;
+        border-radius: 4px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+  }
+  
+  .headerDivider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #A30404, #D62C2C);
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+  }
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mainService {
+  position: relative;
+  min-height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(163, 4, 4, 0.2);
+    
+    .serviceOverlay {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    min-height: 350px;
+  }
+}
+
+.serviceOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  h3 {
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
+    font-weight: 600;
+    color: white;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        width: 8px;
+        height: 8px;
+        background: #D62C2C;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.serviceIcon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.secondaryServices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  grid-column: span 2;
+  
+  @media (max-width: 1024px) {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+}
+
+.secondaryService {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(163, 4, 4, 0.1);
+    
+    .serviceImage {
+      transform: scale(1.05);
+    }
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+    color: #222;
+    margin: 1.5rem 1.5rem 1rem;
+    font-weight: 600;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0 1.5rem 1.5rem;
+    margin: 0;
+    
+    li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-size: 0.95rem;
+      
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #A30404;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.serviceImage {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .mainService {
+    min-height: 300px;
+  }
+  
+  .serviceOverlay {
+    padding: 1.5rem;
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .serviceIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+}

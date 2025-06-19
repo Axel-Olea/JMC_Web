@@ -1,0 +1,53 @@
+.ribbonWrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: black;
+    overflow: hidden;
+    padding: 12px 0;
+  }
+  
+  .ribbon {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .offersTrack {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollTicker 20s linear infinite;
+    align-items: center; // Centra verticalmente
+  }
+
+  .offersTrack:hover {
+    animation-play-state: paused;
+  }
+  
+  .offer {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0 10px;
+    flex-shrink: 0;
+  }
+  
+  @keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } // Mueve solo el 50% por la duplicación
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .offer {
+      font-size: 0.8rem;
+      padding: 0 8px;
+    }
+    
+    .ribbonWrapper {
+      padding: 8px 0;
+    }
+  }

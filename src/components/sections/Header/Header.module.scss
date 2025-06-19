@@ -1,0 +1,217 @@
+.header {
+  background-color: rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  height: 110px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &--scrolled {
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    
+  }
+}
+
+/* Logo */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+  transition: all 0.3s ease;
+
+  .scrolled & {
+    height: 60px;
+  }
+}
+
+/* Menú Hamburguesa (oculto en desktop) */
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Navegación al centro */
+.nav {
+  display: flex;
+  gap: 3rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navLink {
+  color: #333;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  padding-bottom: 5px;
+
+  &:hover {
+    color: #A30404;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #910202;
+      transform: scaleX(1);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff0000;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+}
+
+
+.loginContainer {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  align-items: center;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
+.userInfo {
+  font-size: 0.85rem;
+  color: #555;
+  padding-right: 0.8rem; 
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  margin-right: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.userActions {
+  display: flex;
+  gap: 0.8rem; 
+}
+
+.loginButton, .profileButton, .logoutButton {
+  background-color: transparent;
+  border: 1px solid rgba(163, 4, 4, 0.3);
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  &:hover {
+    background-color: rgba(163, 4, 4, 0.05);
+    border-color: rgba(163, 4, 4, 0.5);
+  }
+}
+
+.loginButton, .profileButton{
+  border-color: rgba(163, 4, 4, 0.5);
+  color: #A30404;
+  
+  &:hover {
+    background-color: rgba(163, 4, 4, 0.1);
+  }
+}
+
+.logoutButton {
+  border-color: rgb(99, 99, 99);
+  color: #590202;
+  
+  &:hover {
+    color: #d32f2f;
+    border-color: rgba(211, 47, 47, 0.3);
+  }
+}
+
+@media (max-width: 1024px) {
+  .userInfo {
+    display: none;
+  }
+  
+  .userMenu {
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginContainer {
+    position: fixed;
+    top: 20px;
+    right: 70px;
+    z-index: 1002;
+  }
+  
+  .loginButton, .profileButton, .logoutButton {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginButton span, 
+  .profileButton span, 
+  .logoutButton span {
+    display: none;
+  }
+  
+  .loginButton, 
+  .profileButton, 
+  .logoutButton {
+    padding: 0.5rem;
+    width: 40px;
+    height: 36px;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .userMenu {
+    gap: 0.5rem;
+  }
+}

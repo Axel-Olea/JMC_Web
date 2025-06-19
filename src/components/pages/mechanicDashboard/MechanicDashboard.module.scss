@@ -1,0 +1,1130 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Estructura principal */
+.dashboardContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.sidebar {
+  width: 250px;
+  background: #A30404;
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+}
+
+.logo {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
+  p {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    color: #bdc3c7;
+  }
+}
+
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+  
+  button {
+    background: none;
+    border: none;
+    color: #ffff;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &.active {
+      background: rgba(255, 255, 255, 0.2);
+      font-weight: 600;
+    }
+  }
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #ffff;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  .logoutBtn {
+    margin-top: 0.5rem;
+    color: #ffff;
+  }
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 2rem;
+  margin-left: 250px;
+  min-height: 100vh;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Estilos para loading y error */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #A30404;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  
+  .errorMessage {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  button {
+    background: #A30404;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    
+    &:hover {
+      background: darken(#A30404, 10%);
+    }
+  }
+}
+
+.analyticsContainer {
+
+  .analyticsRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: start; 
+ 
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statsGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+  .statCard {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      color: #7f8c8d;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+ 
+  }
+  
+  .chartsContainer {
+    height: 100%;
+    display: grid;
+    gap: 1.5rem;
+      
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chartWrapper {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); // para que iguale la altura de statsGrid
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
+  .chartPlaceholder {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+
+  }
+
+  .serviceTable {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    
+    h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: #A30404;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      
+      th, td {
+        font-size: 15px;
+        padding: 0.75rem rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      
+      th {
+        font-weight: 600;
+        color: #7f8c8d;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      tr:hover {
+        background:#ffff;
+      }
+    }
+  }
+}
+
+/* Pestaña de Historial */
+.historyContainer {
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    
+    input, select {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      min-width: 200px;
+    }
+  }
+
+  .historyTable {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-collapse: collapse;
+    
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ffff;
+    }
+    
+    th {
+      font-weight: 600;
+      color: #7f8c8d;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+    
+    tr {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: #f5f7fa;
+      }
+    }
+    
+    .statusBadge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      
+      &.pendiente {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+      
+      &.en-proceso {
+        background-color: #cce5ff;
+        color: #004085;
+      }
+      
+      &.esperando-repuestos {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+      
+      &.completado {
+        background-color: #d4edda;
+        color: #155724;
+      }
+    }
+    
+    .detailButton {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      
+      &:hover {
+        background: #2980b9;
+      }
+    }
+  }
+
+  .appointmentDetail {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    
+    .backButton {
+      background: none;
+      border: none;
+      color: #3498db;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    .detailSections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .detailSection {
+      h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+        font-size: 1.1rem;
+      }
+      
+      p {
+        margin-bottom: 0.5rem;
+        
+        strong {
+          display: inline-block;
+          min-width: 120px;
+          color: #7f8c8d;
+        }
+      }
+    }
+    
+    .statusSelect {
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.scheduleContainer {
+  .scheduleControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .dateNavigation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    button {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #e9ecef;
+      }
+    }
+
+    .todayButton {
+      background: #A30404;
+      color: white;
+      border-color: #A30404;
+      padding: 0.5rem 1rem;
+    }
+
+    h3 {
+      margin: 0 1rem;
+      font-size: 1.2rem;
+      min-width: 250px;
+      text-align: center;
+    }
+  }
+
+  .viewOptions {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &.active {
+        background: #A30404;
+        color: white;
+        border-color: #A30404;
+      }
+    }
+  }
+
+  /* VISTA DIARIA */
+  .calendarView {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .timeSlots {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-auto-rows: minmax(60px, auto);
+  }
+
+  .timeSlot {
+    display: contents;
+  }
+
+  .timeLabel {
+    padding: 0.5rem;
+    text-align: right;
+    font-weight: 500;
+    color: #6c757d;
+    border-bottom: 1px solid #f0f0f0;
+    align-self: stretch;
+    grid-row: span 1;
+  }
+
+  .appointmentSlot {
+    padding: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 60px;
+    grid-row: span 1;
+  }
+
+  .scheduledAppointment {
+    background: #e3f2fd;
+    border-left: 4px solid #2196F3;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+
+    strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: #6c757d;
+      margin-bottom: 0.5rem;
+    }
+
+    .appointmentActions {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+
+        &:first-child {
+          color: #2196F3;
+          border-color: #2196F3;
+        }
+
+        &:last-child {
+          color: #e74c3c;
+          border-color: #e74c3c;
+        }
+      }
+    }
+  }
+
+  /* VISTA SEMANAL */
+  .weekView {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  overflow-x: auto;
+
+  .weekHeader {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); // primera columna para horas
+    margin-bottom: 0.5rem;
+    text-align: center;
+
+    .weekDayHeader {
+      padding: 0.5rem;
+      font-weight: 500;
+
+      .weekDayName {
+        font-size: 0.8rem;
+        color: #6c757d;
+      }
+
+      .weekDayNumber {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .weekGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 0.5rem;
+    border-top: 1px solid #eaeaea;
+  }
+
+  .weekTimeLabel {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: #6c757d;
+    border-bottom: 1px solid #f1f1f1;
+    text-align: left;
+    padding-right: 0.75rem;
+  }
+
+  .weekDayColumn {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .weekTimeSlot {
+    display: flex;
+    height: 80px;
+    position: relative;
+    padding: 0.25rem;
+    box-sizing: border-box;
+  }
+
+  .weekAppointmentSlot {
+    position: relative;
+  }
+
+  .weekAppointment {
+    background: #cce5ff;
+    border-left: 4px solid #339af0;
+    max-width: 150px;
+    border-radius: 4px;
+    padding: 0.3rem 0.3rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      background: #b8daff;
+    }
+
+    strong {
+      display: block;
+      font-size: 0.65rem;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.55rem;
+      color: #495057;
+    }
+  }
+
+  // Estilo para el día actual
+  .today {
+    background-color: #f8f9fa;
+
+    .weekDayHeader {
+      background-color: #e9f5ff;
+      border-radius: 6px;
+    }
+
+    .weekDayColumn {
+      background-color: #fdfdff;
+    }
+  }
+}
+
+
+  /* VISTA MENSUAL */
+  .monthView {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+
+    .monthGrid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+    }
+
+    .monthWeek {
+      display: contents;
+    }
+
+    .monthDay {
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      padding: 0.5rem;
+      min-height: 80px;
+
+      &.otherMonth {
+        opacity: 0.5;
+        background: #f9f9f9;
+      }
+    }
+
+    .monthDayHeader {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .monthAppointment {
+      font-size: 0.7rem;
+      background: #e3f2fd;
+      padding: 0.25rem;
+      border-radius: 3px;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .appointmentList {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    h3 {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .appointmentInfo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .priceTag {
+        color: #28a745;
+        font-weight: 500;
+      }
+    }
+
+    .appointmentActions {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        padding: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+        min-width: 80px;
+
+        &:first-child {
+          color: #2196F3;
+          border-color: #2196F3;
+        }
+
+        &:last-child {
+          color: #e74c3c;
+          border-color: #e74c3c;
+        }
+      }
+    }
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .scheduleContainer {
+    .scheduleControls {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .dateNavigation {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .viewOptions {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .weekView, .monthView {
+      overflow-x: auto;
+      
+      .weekHeader, .weekGrid, .monthGrid {
+        width: 700px;
+      }
+    }
+  }
+}
+
+  .appointmentList {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    
+    h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: #2c3e50;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #ecf0f1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .appointmentInfo {
+        flex-grow: 1;
+      }
+      
+      .appointmentActions {
+        display: flex;
+        gap: 0.5rem;
+      }
+      
+      button {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        
+        &:first-child {
+          color: #3498db;
+          border-color: #3498db;
+        }
+        
+        &:last-child {
+          color: #e74c3c;
+          border-color: #e74c3c;
+        }
+        
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+/* Pestaña de Flujo de Trabajo */
+.workflowContainer {
+  .kanbanBoard {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .kanbanColumn {
+    min-width: 280px;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    
+    h3 {
+      margin: 0 0 1rem;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ecf0f1;
+    }
+  }
+
+  .kanbanCards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 100px;
+  }
+
+  .kanbanCard {
+    background: #f5f7fa;
+    border-radius: 6px;
+    padding: 0.75rem;
+    border-left: 4px solid #3498db;
+    
+    h4 {
+      margin: 0 0 0.25rem;
+      font-size: 0.9rem;
+      color: #2c3e50;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #7f8c8d;
+    }
+  }
+
+  .cardActions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    
+    select {
+      flex-grow: 1;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+  }
+}
+
+/* Pestaña de Vehículos */
+.vehiclesContainer {
+  .filters {
+    margin-bottom: 1.5rem;
+    
+    input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      min-width: 300px;
+    }
+  }
+
+  .vehiclesTable {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-collapse: collapse;
+    
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ffff;
+    }
+    
+    th {
+      font-weight: 600;
+      color: #7f8c8d;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+    
+    tr {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: #f5f7fa;
+      }
+    }
+    
+    .detailButton {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      
+      &:hover {
+        background: #2980b9;
+      }
+    }
+  }
+
+  .vehicleDetail {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    
+    .backButton {
+      background: none;
+      border: none;
+      color: #3498db;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    .detailSections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .detailSection {
+      h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+        font-size: 1.1rem;
+      }
+      
+      p {
+        margin-bottom: 0.5rem;
+        
+        strong {
+          display: inline-block;
+          min-width: 120px;
+          color: #7f8c8d;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .mainContent {
+    margin-left: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+    padding: 1rem;
+    
+    .navMenu {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      
+      button {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+      }
+    }
+    
+    .footer {
+      display: none;
+    }
+  }
+  
+  .mainContent {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+
