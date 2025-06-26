@@ -12,6 +12,7 @@ import AdminRoute from './routes/AdminRoute';
 import EditVehicle from './components/pages/Profile/EditVehicle/EditVehicle';
 import ServicesPage from './components/pages/ServicesPage/ServicesPage';
 import ScrollToTop from './components/sections/ScrollToTop';
+import ResetPassword from './components/pages/ResetPassword/ResetPassword';
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/appointment" element={<AppointmentPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<ProfilePage nombre={nombreUsuario} />} />
           <Route path="/VehicleRegister" element={<VehicleRegisterPage />} />
           <Route path="/edit-vehicle" element={<EditVehicle />} />

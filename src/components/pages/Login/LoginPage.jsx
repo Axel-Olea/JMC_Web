@@ -102,7 +102,7 @@ const LoginPage = () => {
           </button>
 
           <div className={styles.links}>
-            <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+            <Link to="/reset-password">¿Olvidaste tu contraseña?</Link>
             <span>
               ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
             </span>

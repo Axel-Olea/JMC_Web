@@ -1,7 +1,8 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import {
   auth,
@@ -81,4 +82,24 @@ export const iniciarSesion = async (email, password) => {
     nombreCompleto: userData.nombreCompleto,
     rut: userData.rut
   };
+};
+
+export const sendPasswordReset = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { success: true, message: 'Correo de restablecimiento enviado' };
+  } catch (error) {
+    let errorMessage = 'Error al enviar el correo';
+    switch (error.code) {
+      case 'auth/user-not-found':
+        errorMessage = 'No existe una cuenta con este correo';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'Correo electrónico inválido';
+        break;
+      default:
+        errorMessage = error.message;
+    }
+    return { success: false, message: errorMessage };
+  }
 };
