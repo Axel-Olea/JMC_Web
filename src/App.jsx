@@ -30,13 +30,11 @@ function App() {
         <Route path="/profile" element={<ProfilePage nombre={nombreUsuario} />} />
           <Route path="/VehicleRegister" element={<VehicleRegisterPage />} />
           <Route path="/edit-vehicle" element={<EditVehicle />} />
-        <Route path="/MechanicDashboard" element={<MechanicDashboard />} />
-
         <Route path="/services" element={<ServicesPage />} />
         
         {/* Protegemos la ruta solo para admin */}
-        <Route element={<AdminRoute />}>
-          <Route path="/mechanic-dashboard" element={<MechanicDashboard />} />
+        <Route path="/mechanic-dashboard" element={<AdminRoute />}>
+          <Route index element={<MechanicDashboard />} />
         </Route>
       </Routes>
     </Router>

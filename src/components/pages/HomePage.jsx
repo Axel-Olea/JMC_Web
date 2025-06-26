@@ -23,7 +23,7 @@ export const HomePage = () => {
       <WhyUsSection/>
       <ContactSection/>
       <ScheduleSection/>
-      <Chatbot/>
+      {/* <Chatbot/> */}
       <Footer/>
     </div>
   )

@@ -7,36 +7,54 @@ import { firestore } from '../firebase/firebaseConfig';
 
 const AdminRoute = () => {
   const { user } = useSelector((state) => state.auth);
-  const [isAdmin, setIsAdmin] = useState(null); // null: cargando, false: denegar, true: permitir
+  const [access, setAccess] = useState('checking'); // checking, granted, denied
 
   useEffect(() => {
-    const checkAdmin = async () => {
-      if (!user) {
-        setIsAdmin(false);
-        return;
-      }
-
+    const checkAccess = async () => {
       try {
-        const userDoc = doc(firestore, 'users', user.uid);
-        const userSnap = await getDoc(userDoc);
-
-        if (userSnap.exists() && userSnap.data().role === 'admin') {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
+        if (!user?.uid) {
+          setAccess('denied');
+          return;
         }
-      } catch (err) {
-        console.error('Error verificando rol de admin:', err);
-        setIsAdmin(false);
+
+        const userDoc = await getDoc(doc(firestore, 'users', user.uid));
+        
+        if (userDoc.exists() && userDoc.data().role === 'admin') {
+          setAccess('granted');
+        } else {
+          setAccess('denied');
+        }
+      } catch (error) {
+        console.error('Error verifying admin access:', error);
+        setAccess('denied');
       }
     };
 
-    checkAdmin();
+    checkAccess();
   }, [user]);
 
-  if (isAdmin === null) return <div>Cargando...</div>;
+  // Mostrar spinner mientras se verifica
+  if (access === 'checking') {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
-  return isAdmin ? <Outlet /> : <Navigate to="/" replace />;
+  // Redirigir si no tiene acceso
+  if (access === 'denied') {
+    console.warn('Intento de acceso no autorizado al panel admin');
+    return <Navigate to="/" replace />;
+  }
+
+  // Permitir acceso
+  return <Outlet />;
 };
 
 export default AdminRoute;

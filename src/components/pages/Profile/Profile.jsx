@@ -85,16 +85,19 @@ const Profile = () => {
           <h2 className={styles.profileTitle}>Mi Perfil</h2>
 
               {userData?.role === 'admin' && (
-              <motion.button
-                className={styles.adminButton}
-                onClick={() => navigate('/mechanic-dashboard')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Ir a Panel de Control
-              </motion.button>
-            
-        )}
+                <motion.button
+                  className={styles.adminButton}
+                  onClick={() => {
+                    console.log('Intentando navegar a /mechanic-dashboard');
+                    console.log('User role:', userData?.role);
+                    navigate('/mechanic-dashboard', { replace: true });
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Ir a Panel de Control
+                </motion.button>
+              )}
           
           {/* Sección de información del usuario */}
           <div className={styles.userInfoContainer}>

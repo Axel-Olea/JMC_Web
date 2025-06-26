@@ -288,3 +288,100 @@
     transform: translateY(-5px);
   }
 }
+
+/* Añade esto al final de tu archivo WhyUsSection.module.scss */
+
+@media (max-width: 768px) {
+  .whyUs {
+    padding: 3rem 1.5rem;
+    
+    &::before {
+      height: 6px; /* Banda superior más delgada */
+    }
+  }
+
+  .sectionHeader {
+    margin-bottom: 2.5rem;
+    
+    h2 {
+      font-size: 2rem;
+      line-height: 1.3;
+      
+      span::after {
+        bottom: 2px; /* Ajuste para subrayado */
+        height: 6px;
+      }
+    }
+    
+    p {
+      font-size: 1rem;
+      max-width: 100%;
+    }
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .featureCard {
+    padding: 2rem 1.5rem;
+    
+    &:hover {
+      transform: none; /* Desactiva el efecto hover en móvil */
+    }
+  }
+
+  .iconContainer {
+    width: 70px;
+    height: 70px;
+    
+    .icon {
+      font-size: 1.8rem;
+    }
+  }
+
+  .statsBanner {
+    flex-direction: column;
+    padding: 2.5rem 1rem;
+    margin-top: 3rem;
+    border-radius: 8px;
+    
+    .statItem {
+      margin-bottom: 2rem;
+      padding: 0;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .statNumber {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .whyUs {
+    padding: 2.5rem 1rem;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 1.8rem;
+  }
+  
+  .featureCard {
+    padding: 1.8rem 1.2rem;
+    
+    h3 {
+      font-size: 1.4rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+}

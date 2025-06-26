@@ -39,6 +39,7 @@ const MechanicDashboard = () => {
   const [activeTab, setActiveTab] = useState('analytics');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [editingAppointment, setEditingAppointment] = useState(null);
   const [newDateTime, setNewDateTime] = useState({
     date: '',
@@ -474,9 +475,27 @@ const MechanicDashboard = () => {
     return true;
   };
 
+  const getStatusFromColumnId = (columnId) => {
+    const statusMap = {
+      1: "Pendiente",
+      2: "En Proceso",
+      3: "Esperando Repuestos",
+      4: "Completado"
+    };
+    return statusMap[columnId];
+  };
+
   return (
     <div className={styles.dashboardContainer}>
-      <div className={styles.sidebar}>
+      {/* Botón de menú móvil */}
+      <button 
+        className={styles.mobileMenuButton}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? '×' : '☰'}
+      </button>
+
+      <div className={`${styles.sidebar} ${isMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <div className={styles.logo}>
           <h2>JMC Repair</h2>
           <p>Panel de Control</p>
@@ -721,7 +740,7 @@ const MechanicDashboard = () => {
                   />
                 </div>
                 
-                <table className={styles.historyTable}>
+                <table className={`${styles.historyTable} ${styles.responsiveTable}`}>
                   <thead>
                     <tr>
                       <th>Fecha</th>
@@ -1121,13 +1140,37 @@ const MechanicDashboard = () => {
                         draggable
                         onDragStart={(e) => handleDragStart(e, appointment.id, column.id)}
                       >
-                        <h4>{appointment.service}</h4>
+                        <div className={styles.cardHeader}>
+                          <h4>{appointment.service}</h4>
+                          <span className={styles.currentStatus}>
+                            {appointment.status}
+                          </span>
+                        </div>
+                        
                         <p>{appointment.client}</p>
                         <p>{appointment.vehicle}</p>
                         <p className={styles.cardPrice}>
                           <FaMoneyBillWave /> ${(appointment.estimatedPrice || 0).toLocaleString('es-CL')}
                         </p>
-                        <div className={styles.cardActions}>
+                        
+                        {/* Opciones solo en móvil */}
+                        <div className={styles.mobileStatusOptions}>
+                          <select
+                            className={styles.statusSelect}
+                            onChange={(e) => updateAppointmentStatus(appointment.id, e.target.value)}
+                            onClick={(e) => e.stopPropagation()}
+                            defaultValue=""
+                          >
+                            <option value="" disabled>Cambiar estado...</option>
+                            {columns.filter(c => c.id !== column.id).map(targetColumn => (
+                              <option 
+                                key={targetColumn.id}
+                                value={getStatusFromColumnId(targetColumn.id)}
+                              >
+                                Mover a {targetColumn.title}
+                              </option>
+                            ))}
+                          </select>
                         </div>
                       </div>
                     ))}
