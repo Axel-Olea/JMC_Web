@@ -68,8 +68,22 @@ const MechanicDashboard = () => {
   // Formatear fecha
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('es-ES', options);
+    
+    // Asegurarse que la fecha se interprete como UTC
+    const date = new Date(dateString + 'T12:00:00Z'); // Hora del medio día UTC
+    
+    // Ajustar a hora local de Chile (UTC-4 o UTC-3)
+    const offset = date.getTimezoneOffset();
+    date.setMinutes(date.getMinutes() + offset);
+    
+    const options = { 
+      day: '2-digit', 
+      month: '2-digit', 
+      year: 'numeric',
+      timeZone: 'America/Santiago' // Especificar zona horaria de Chile
+    };
+    
+    return date.toLocaleDateString('es-ES', options);
   };
 
   // Formatear hora
@@ -167,12 +181,19 @@ const MechanicDashboard = () => {
 
   // Filtrar citas para la agenda diaria
   const dailyAppointments = appointments.filter(app => {
-    const appDate = new Date(app.date);
-    return (
-      appDate.getDate() === currentDate.getDate() &&
-      appDate.getMonth() === currentDate.getMonth() &&
-      appDate.getFullYear() === currentDate.getFullYear()
-    );
+    // Crear fecha de la cita en UTC (asumiendo formato YYYY-MM-DD)
+    const [year, month, day] = app.date.split('-');
+    const appDate = new Date(Date.UTC(year, month - 1, day));
+    
+    // Crear fecha de comparación en UTC
+    const compareDate = new Date(Date.UTC(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      currentDate.getDate()
+    ));
+    
+    // Comparar fechas UTC
+    return appDate.getTime() === compareDate.getTime();
   });
 
   // Filtrar citas para la semana actual
@@ -993,9 +1014,18 @@ const MechanicDashboard = () => {
                               </span>
                             </div>
                             <div className={styles.appointmentActions}>
-                              <button onClick={() => setSelectedAppointment(app)}>
-                                Reagendar
-                              </button>
+                              <button 
+                                        className={styles.editButton}
+                                        onClick={() => {
+                                          setEditingAppointment(app);
+                                          setNewDateTime({
+                                            date: app.date,
+                                            time: app.time
+                                          });
+                                        }}
+                                      >
+                                        Reagendar
+                                      </button>
                               <button onClick={() => handleCancelAppointment(app.id)}>
                                 Cancelar
                               </button>

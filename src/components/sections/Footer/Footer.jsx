@@ -53,10 +53,20 @@ const Footer = () => {
             <a href="#" className={styles.socialLink} aria-label="Facebook">
               <FaFacebook className={styles.socialIcon} />
             </a>
-            <a href="#" className={styles.socialLink} aria-label="Instagram">
+            <a href="https://www.instagram.com/jmc.repair/#" 
+              className={styles.socialLink} 
+              aria-label="Instagram"
+              target="_blank"
+              >
               <FaInstagram className={styles.socialIcon} />
             </a>
-            <a href="#" className={styles.socialLink} aria-label="WhatsApp">
+            <a 
+              href={`https://wa.me/56966621072?text=${encodeURIComponent('Hola, me interesa información sobre sus servicios')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialLink}
+              aria-label="WhatsApp"
+            >
               <FaWhatsapp className={styles.socialIcon} />
             </a>
           </div>

@@ -27,6 +27,7 @@ body {
   flex-direction: column;
   position: fixed;
   height: 100vh;
+  z-index: 1000;
 }
 
 .logo {
